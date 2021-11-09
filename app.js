@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
-/*const fs = require('fs');
+const fs = require('fs');
 const generatePage = require('./src/page-template');
-
+/*
 const pageHTML = generatePage(name, github);
 
 fs.writeFile('./index.html', pageHTML, err => {
@@ -19,7 +19,7 @@ const promptUser = () => {
     },
     {
       type: 'input',
-      name: 'GitHub username',
+      name: 'github',
       message: 'Enter your GitHub Username',
       validate: nameInput => {
         if (nameInput) {
@@ -66,7 +66,7 @@ Add a New Project
     .prompt([
       {
         type: 'input',
-        name: 'Project Name',
+        name: 'name',
         message: 'What is the name of your project? (Required)',
         validate: nameInput => {
           if (nameInput) {
@@ -79,7 +79,7 @@ Add a New Project
       },
       {
         type: 'input',
-        name: 'Project Description',
+        name: 'description',
         message: 'Provide a description of the project (Required)',
         validate: descriptionInput => {
           if (descriptionInput) {
@@ -98,7 +98,7 @@ Add a New Project
       },
       {
         type: 'input',
-        name: 'Project GitHub link',
+        name: 'link',
         message: 'Enter the GitHub link to your project. (Required)',
         validate: linkInput => {
           if (linkInput) {
@@ -135,5 +135,63 @@ Add a New Project
 promptUser()
   .then(promptProject)
   .then(portfolioData => {
-    console.log(portfolioData);
+
+  //  mock data
+  const mockData = {
+    name: 'Lernantino',
+    github: 'lernantino',
+    confirmAbout: true,
+    about:
+      'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et.',
+    projects: [
+      {
+        name: 'Run Buddy',
+        description:
+          'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et. Nam fringilla elit dapibus pellentesque cursus.',
+        languages: ['HTML', 'CSS'],
+        link: 'https://github.com/lernantino/run-buddy',
+        feature: true,
+        confirmAddProject: true
+      },
+      {
+        name: 'Taskinator',
+        description:
+          'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et. Nam fringilla elit dapibus pellentesque cursus.',
+        languages: ['JavaScript', 'HTML', 'CSS'],
+        link: 'https://github.com/lernantino/taskinator',
+        feature: true,
+        confirmAddProject: true
+      },
+      {
+        name: 'Taskmaster Pro',
+        description:
+          'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et. Nam fringilla elit dapibus pellentesque cursus.',
+        languages: ['JavaScript', 'jQuery', 'CSS', 'HTML', 'Bootstrap'],
+        link: 'https://github.com/lernantino/taskmaster-pro',
+        feature: false,
+        confirmAddProject: true
+      },
+      {
+        name: 'Robot Gladiators',
+        description:
+          'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque.',
+        languages: ['JavaScript'],
+        link: 'https://github.com/lernantino/robot-gladiators',
+        feature: false,
+        confirmAddProject: false
+      }
+    ]
+  };
+
+  const pageHTML = generatePage(mockData);
+
+  //mock end
+
+    //const pageHTML = generatePage(portfolioData);
+
+    fs.writeFile('./index.html', pageHTML, err => {
+    if (err) throw new Error(err);
+
+    console.log('Page created! Check out index.html in this directory to see it!');
+    });
   });
